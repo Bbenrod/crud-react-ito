@@ -2,12 +2,11 @@ import logo from './logo.svg';
 import './App.css';
 
 //importamos los componentes
-import CompShowBlogs from './blog/ShowBlogs';
-import CompCreateBlog from './blog/CreateBlog';
-import CompEditBlog from './blog/EditBlog';
+import CompShowBlogs from './users/ShowUsers';
 
 //importamos el router
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import CompShowUsers from './users/ShowUsers';
 
 
 function App() {
@@ -18,9 +17,9 @@ function App() {
       </header>
       <BrowserRouter>
         <Routes>
-            <Route path='/' element={ <CompShowBlogs />} />
-            <Route path='/create' element={ <CompCreateBlog />} />
-            <Route path='/edit/:id' element={ <CompEditBlog />} />
+            <Route path='/' element={ <CompShowUsers />} />
+            <Route path='/create' element={ <CompCreateUsers />} />
+            <Route path='/edit/:id' element={ <CompEditUsers />} />
         </Routes>
       </BrowserRouter>
       
