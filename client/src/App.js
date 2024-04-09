@@ -18,8 +18,6 @@ function App() {
       <BrowserRouter>
         <Routes>
             <Route path='/' element={ <CompShowUsers />} />
-            <Route path='/create' element={ <CompCreateUsers />} />
-            <Route path='/edit/:id' element={ <CompEditUsers />} />
         </Routes>
       </BrowserRouter>
       
