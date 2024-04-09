@@ -1,11 +1,15 @@
 const express = require("express");
+const cors = require("cors");
 const mongoose = require("mongoose");
 const crearRutas = require("./routes");
 
 require("dotenv").config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 8080;
+
+// Permitir solicitudes desde cualquier origen
+app.use(cors());
 
 // Conexión a MongoDB
 mongoose
