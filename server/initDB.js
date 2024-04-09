@@ -27,6 +27,7 @@ const userData = [
 // Función para inicializar la base de datos con los datos de ejemplo
 async function initDB() {
     try {
+        await User.deleteMany({});
         // Crea nuevos usuarios utilizando los datos de ejemplo
         await User.create(userData);
         console.log("[Init] Base de datos inicializada con éxito");
