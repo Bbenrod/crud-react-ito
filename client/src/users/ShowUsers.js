@@ -1,29 +1,27 @@
 import axios from 'axios'
-import {useState, useEffect} from 'react'
+import { useState, useEffect } from 'react'
 import {Link} from 'react-router-dom'
 
-const URI = 'http://localhost:8000/blogs/'
+const URI = 'http://localhost:3000/api/users'
 
-
-const CompShowBlogs = () => {
-    
-    const [blogs, setBlog] = useState([])
+const CompShowUsers = () => {
+    const [users, setUsers] = useState([])
     useEffect( ()=>{
-        getBlogs()
+        getUsers()
     },[])
 
-    //procedimineto para mostrar todos los blogs
-    const getBlogs = async () => {
+    //Mostrar los usuarios
+    const getUsers = async () => {
         const res = await axios.get(URI)
-        setBlog(res.data)
+        setUsers(res.data)
     }
 
-    //procedimineto para eliminar un blog
-    const deleteBlog = async (id) => {
-       await axios.delete(`${URI}${id}`)
-       getBlogs()
+    //Eliminar un usuario
+    const deleteUser = async (id) => {
+        axios.delete('${URI}${id}')
+        getUsers()
     }
-
+    
     return(
         <div className='container'>
             <div className='row'>
@@ -38,13 +36,13 @@ const CompShowBlogs = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            { blogs.map ( (blog) => (
-                                <tr key={ blog.id}>
-                                    <td> { blog.title } </td>
-                                    <td> { blog.content } </td>
+                            { blogs.map ( (users) => (
+                                <tr key={ users.id}>
+                                    <td> { users.title } </td>
+                                    <td> { users.content } </td>
                                     <td>
-                                        <Link to={`/edit/${blog.id}`} className='btn btn-info'><i className="fas fa-edit"></i></Link>
-                                        <button onClick={ ()=>deleteBlog(blog.id) } className='btn btn-danger'><i className="fas fa-trash-alt"></i></button>
+                                        <Link to={`/edit/${users.id}`} className='btn btn-info'><i className="fas fa-edit"></i></Link>
+                                        <button onClick={ ()=>deleteUser(users.id) } className='btn btn-danger'><i className="fas fa-trash-alt"></i></button>
                                     </td>
                                 </tr>
                             )) }
@@ -54,7 +52,6 @@ const CompShowBlogs = () => {
             </div>
         </div>
     )
-
 }
 
-export default CompShowBlogs
+export default CompShowUsers
