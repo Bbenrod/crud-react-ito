@@ -2,44 +2,30 @@ import axios from 'axios'
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-const URI = 'http://localhost:3000/api/users'
-
-const initialUsers = [
-    {
-        "_id": "6614cedcfbf118429dd51e39",
-        "name": "Benji",
-        "studentNumber": "20630277",
-        "phoneNumber": "3921022513",
-        "photoUrl": "https://media.licdn.com/dms/image/D4D03AQF7jX8kG9A6GQ/profile-displayphoto-shrink_800_800/0/1708014797139?e=1718236800&v=beta&t=RaFApDJj1m2DAz3u74_z7YHaO7Iuktb6adJxcJvoWzE",
-        "__v": 0
-    },
-    {
-        "_id": "6614cedcfbf118429dd51e3a",
-        "name": "Juan",
-        "studentNumber": "20630236",
-        "phoneNumber": "3923333333",
-        "photoUrl": "https://media.licdn.com/dms/image/D5635AQHBJx1Ct4dH3Q/profile-framedphoto-shrink_800_800/0/1708573748504?e=1713247200&v=beta&t=zBMInvld5oTs6qiyA7F8JwdwXpcPAejtogSatBfelVg",
-        "__v": 0
-    }
-]
+const URI = 'http://localhost:8080/api/users'
 
 const CompShowUsers = () => {
-    const [users, setUsers] = useState(initialUsers)
+    const [users, setUsers] = useState([])
 
-    /*useEffect(() => {
+    useEffect(() => {
         getUsers()
     }, [])
 
-    Mostrar los usuarios
+    //Mostrar los usuarios
     const getUsers = async () => {
         const res = await axios.get(URI)
         console.log(res.data)
         setUsers(res.data)
-    }*/
+    }
 
     //Eliminar un usuario
-    const deleteUser = async (id) => {
-        setUsers(users.filter(user => user._id !== id))
+    const deleteUser = async (_id) => {
+        try {
+            await axios.delete(`${URI}/${_id}`)
+            getUsers()
+        } catch (error) {
+            console.error('Error al eliminar usuario:', error)
+        }
     }
 
     return (
