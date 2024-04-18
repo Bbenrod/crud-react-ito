@@ -14,7 +14,6 @@ const CompShowUsers = () => {
     //Mostrar los usuarios
     const getUsers = async () => {
         const res = await axios.get(URI)
-        console.log(res.data)
         setUsers(res.data)
     }
 
@@ -32,7 +31,7 @@ const CompShowUsers = () => {
         <div className='container'>
             <div className='row'>
                 <div className='col'>
-                    <Link to="/create" className='btn btn-primary mt-2 mb-2'><i className="fas fa-plus"></i></Link>
+                    <Link to="/create" className='btn btn-primary mt-2 mb-2'>Create</Link>
                     <table className='table'>
                         <thead className='table-primary'>
                             <tr>
@@ -49,8 +48,8 @@ const CompShowUsers = () => {
                                     <td>{user.studentNumber}</td>
                                     <td>{user.phoneNumber}</td>
                                     <td>
-                                        <Link to={`/edit/${user._id}`} className='btn btn-info'><i className="fas fa-edit"></i></Link>
-                                        <button onClick={() => deleteUser(user._id)} className='btn btn-danger'><i className="fas fa-trash-alt"></i></button>
+                                        <Link to={`/edit/${user._id}`} className='btn btn-info'>Edit</Link>
+                                        <button onClick={() => deleteUser(user._id)} className='btn btn-danger'>Delete</button>
                                     </td>
                                 </tr>
                             ))}
