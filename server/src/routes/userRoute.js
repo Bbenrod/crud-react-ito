@@ -1,5 +1,9 @@
 const express = require("express");
-const { getAllUsers, updateUser, createUser } = require("../controllers/userController");
+const {
+    getAllUsers,
+    updateUser,
+    createUser,
+} = require("../controllers/userController");
 const user_router = express.Router();
 
 // Define el nombre de la ruta
@@ -16,8 +20,6 @@ user_router.get("/:id", async (req, res) => {
 
 user_router.patch("/:id", updateUser);
 
-user_router.delete("/:id", async (req, res) => {
-    // Manejo de la solicitud DELETE para eliminar un usuario por su ID
-});
+user_router.delete("/:id", deleteUser);
 
 module.exports = { user_router, USER_ROUTE_NAME };
